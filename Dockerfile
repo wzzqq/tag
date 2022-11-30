@@ -24,11 +24,11 @@ RUN mkdir /install    && \
 
 FROM python:3.7.15-slim  as release
 
-RUN apt-get update && apt-get -y install libxml2-dev libxslt-dev zlib1g-dev cmake pkg-config cron git gcc  build-essential libpq-dev cron git libopenblas-dev liblapack-dev libatlas-base-dev libblas-dev gfortran
-#RUN apt-get install -y libxml2-dev libxslt-dev zlib1g-dev libopenblas-dev cmake pkg-config  && \
+RUN apt-get update && apt-get -y install libxml2-dev libxslt-dev zlib1g-dev cmake pkg-config cron git gcc  build-essential libpq-dev cron git libopenblas-dev liblapack-dev libatlas-base-dev libblas-dev gfortran  && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+#RUN apt-get install -y libxml2-dev libxslt-dev zlib1g-dev libopenblas-dev cmake pkg-config
 WORKDIR /app
 
 COPY --from=build /install /install
