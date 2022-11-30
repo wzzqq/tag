@@ -8,7 +8,10 @@ RUN apt-get -o Acquire::Check-Valid-Until=false update \
     && apt-get install \
     --no-install-recommends --yes \
     build-essential libpq-dev cron git libopenblas-dev liblapack-dev libatlas-base-dev libblas-dev gfortran zlib1g-dev cmake pkg-config \
-     --yes
+     --yes  && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 FROM base as build
 
@@ -22,7 +25,10 @@ RUN mkdir /install    && \
 FROM python:3.7.15-slim  as release
 
 RUN apt-get update && apt-get -y install libxml2-dev libxslt-dev zlib1g-dev cmake pkg-config cron git gcc  build-essential libpq-dev cron git libopenblas-dev liblapack-dev libatlas-base-dev libblas-dev gfortran
-#RUN apt-get install -y libxml2-dev libxslt-dev zlib1g-dev libopenblas-dev cmake pkg-config
+#RUN apt-get install -y libxml2-dev libxslt-dev zlib1g-dev libopenblas-dev cmake pkg-config  && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
 COPY --from=build /install /install
