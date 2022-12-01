@@ -1,4 +1,4 @@
-FROM python:3.7.15-slim as base
+FROM python:3.11.0-slim as base
 
 # Create app directory
 WORKDIR /app
@@ -22,7 +22,7 @@ RUN mkdir /install    && \
 
 #RUN pip download --destination-directory /install -r /app/requirements.txt
 
-FROM python:3.7.15-slim  as release
+FROM python:3.11.0-slim  as release
 
 RUN apt-get update && apt-get -y install libxml2-dev libxslt-dev zlib1g-dev cmake pkg-config cron git gcc  build-essential libpq-dev cron git libopenblas-dev liblapack-dev libatlas-base-dev libblas-dev gfortran  && \
     apt-get autoremove -y && \
