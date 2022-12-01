@@ -91,7 +91,7 @@ qtconsole==4.5.2
 requests==2.22.0
 requests-html==0.10.0
 scikit-learn==1.0.2
-scipy==1.7.3
+scipy
 Send2Trash==1.5.0
 setuptools==59.2.0
 six==1.12.0
