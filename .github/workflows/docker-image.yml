@@ -3,12 +3,12 @@ name: Docker Image CI
 on:
   push:
     branches:
-      - 'dev1'
+      - 'py11'
     tags:
       - 'v*'
   pull_request:
     branches:
-      - 'dev1'
+      - 'py11'
 
 jobs:
   docker:
@@ -42,4 +42,4 @@ jobs:
             linux/amd64
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/bustag-z:dev2
+            ${{ secrets.DOCKER_USERNAME }}/bustag-z:py11
