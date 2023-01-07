@@ -18,7 +18,7 @@ FROM base as build
 COPY requirements.txt .
 
 RUN mkdir /install    && \
-    pip download --destination-directory /install -r /app/requirements.txt
+    pip download --destination-directory /install --no-cache-dir -r /app/requirements.txt
 
 #RUN pip download --destination-directory /install -r /app/requirements.txt
 
@@ -35,7 +35,7 @@ COPY --from=build /install /install
 
 COPY requirements.txt .
 
-RUN pip install --no-index --find-links=/install -r requirements.txt   && \
+RUN pip install --no-index --find-links=/install --no-cache-dir -r requirements.txt   && \
     mkdir /app/docker
 
 #RUN mkdir /app/docker
